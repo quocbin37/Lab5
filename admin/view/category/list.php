@@ -32,5 +32,5 @@
             </tr> 
             <?php endforeach; ?> 
             </table> 
-            <a href="<?php echo Helper::get_url('admin/view/category/add.php');?>">Add Category</a>
+            <a href="<?php echo Helper::get_url('admin/?c=addcat');?>">Add Category</a>
 </html>

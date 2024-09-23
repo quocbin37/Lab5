@@ -11,7 +11,9 @@
     include_once './../model/da/database.php'; 
     include_once '../model/da/helper.php'; 
     include_once '../model/bl/category.php'; 
-    include_once '../model/bl/category_db.php'; 
+    include_once '../model/bl/category_db.php';
+    include_once '../model/bl/product_db.php';
+     
   //  include_once('./../model/da/helper.php');
 
       $db = new Database(); 

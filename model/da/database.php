@@ -11,18 +11,22 @@
       } 
       public static function db_connect() 
       { 
-         try{ 
-            if(is_null(self::$con)) 
-            {  
-              self::$con = new PDO(self::$dsn,self::$username,self::$password); 
-              self::$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); 
-            } 
-         }catch(PDOException $e) 
-         { 
-            $error_message = $e->getMessage(); 
-            include_once('../errors/database_error.php'); 
-         } 
-      } 
+          try { 
+              if (is_null(self::$con)) {  
+                  // Initialize the database connection if it hasn't been initialized
+                  self::$con = new PDO(self::$dsn, self::$username, self::$password); 
+                  self::$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Better error reporting
+              }
+          } catch (PDOException $e) { 
+              // Log the error and display a user-friendly message
+              error_log("Database connection failed: " . $e->getMessage());
+              throw new Exception("Could not connect to the database."); // Optional: throw exception or handle as needed
+          }
+      
+          // Return the database connection
+          return self::$con; 
+      }
+      
       public static function db_disconnect() 
       { 
         if(!is_null(self::$con)) 
